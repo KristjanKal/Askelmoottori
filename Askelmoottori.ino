@@ -7,79 +7,85 @@
 #define EN 8
 #define STEP 7
 
-#define CLOCKWISE HIGH
-#define COUNTERCLOCKWISE LOW
 
-int dir=CLOCKWISE;
+askelmoottori motor1(13, 12, 11, 10, 9, 8, 7); //PINNIT mihin askelmoottori on kytketty arduino levyl
+askelmoottori motor2(24, 26, 28, 30, 32, 34, 36); //PINNIT mihin askelmoottori on kytketty arduino levyl
+
 void setup() {
-  pinMode(STEP, OUTPUT);
-  pinMode(DIR, OUTPUT);
-  pinMode(EN, OUTPUT);
-  digitalWrite(EN, LOW);
-  pinMode(RST, OUTPUT);
-  digitalWrite(RST, HIGH);
-  pinMode(SLEEP, OUTPUT);
-  digitalWrite(SLEEP, HIGH);
-  pinMode(MS1, OUTPUT);
-  pinMode(MS2, OUTPUT);
-  fullStep();
-  Serial.begin(9600);
-
-  
-}
-
-void fullStep(){
-  digitalWrite(MS1, LOW);
-  digitalWrite(MS2, LOW);
-}
-void halfStep(){
-  digitalWrite(MS1, HIGH);
-  digitalWrite(MS2, LOW);
-}
-void quarterStep(){
-  digitalWrite(MS1, LOW);
-  digitalWrite(MS2, HIGH);
-}
-#define stepsPerRevolution 200
-void _kierros(){
-  dir=COUNTERCLOCKWISE;
-  digitalWrite(DIR, dir);
-  for (int i = 0; i < stepsPerRevolution; i++) {
-    step();  
-  }
-}
-void _kierroscounter(){
-  dir=CLOCKWISE;
-  digitalWrite(DIR, dir);
-  for (int i = 0; i < stepsPerRevolution; i++){
-    step();
-  }
-}
-
-void _aja(){
-  for (int i = 0; i < stepsPerRevolution; i++) {
-    step();  
-  }
-}
-
-void _suunta(){
-  if(dir == CLOCKWISE){
-    dir=COUNTERCLOCKWISE;
-  }else{
-    dir=CLOCKWISE;
-  }
-  digitalWrite(DIR,dir);
+ Serial.begin(9600);
 }
 
 
-int waitHigh=1800, waitLow=1800;
-
-void step(){
-    digitalWrite(STEP, LOW);
-    delayMicroseconds(waitHigh);
-    digitalWrite(STEP, HIGH);
-    delayMicroseconds(waitLow);
+void loop(){
+  motor1.quarterStep();
+  motor1.CW();
+  motor1.aja();
+  motor2.quarterStep(); 
+  motor2.CW();
+  motor2.aja();
+  motor1.quarterStep();
+  motor1.CW();
+  motor1.aja();
+  motor2.quarterStep();
+  motor2.CW();
+  motor2.aja();
+  motor1.quarterStep();
+  motor1.CW();
+  motor1.aja();
+  motor2.quarterStep(); 
+  motor2.CW();
+  motor2.aja();
+  motor1.quarterStep();
+  motor1.CW();
+  motor1.aja();
+  motor2.quarterStep();
+  motor2.CW();
+  motor2.aja();
+  motor1.fullStep();
+  motor1.CCW();
+  motor1.aja();
+  motor2.fullStep(); 
+  motor2.CCW();
+  motor2.aja();
+   motor1.quarterStep();
+  motor1.CW();
+  motor1.aja();
+  motor2.quarterStep(); 
+  motor2.CW();
+  motor2.aja();
+  motor1.quarterStep();
+  motor1.CW();
+  motor1.aja();
+  motor2.quarterStep();
+  motor2.CW();
+  motor2.aja();
+  motor1.quarterStep();
+  motor1.CW();
+  motor1.aja();
+  motor2.quarterStep(); 
+  motor2.CW();
+  motor2.aja();
+  motor1.quarterStep();
+  motor1.CW();
+  motor1.aja();
+  motor2.quarterStep();
+  motor2.CW();
+  motor2.aja();
+  motor1.fullStep();
+  motor1.CW();
+  motor1.aja();
+  motor2.fullStep(); 
+  motor2.CW();
+  motor2.aja();
+  motor1.halfStep();
+  motor1.CCW();
+  motor1.aja();
+  motor2.halfStep();
+  motor2.CCW();
+  motor2.aja();
 }
+
+/*
 
 void loop() {
   if(Serial.available()>0){
@@ -90,7 +96,7 @@ void loop() {
       case 'w':waitHigh=waitLow+100;break;
       case 's':waitHigh=waitLow-100;break;
       case 'k':_kierros();break;
-      case 'l':_kierroscounter();break;
+      case 'l':_counterkierros();break;
       case 'm':_suunta();break;
       case 'n':_aja();break;
       case 'p':Serial.print("waitHigh :");
@@ -103,3 +109,4 @@ void loop() {
  
 
 }
+*/
