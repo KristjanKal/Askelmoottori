@@ -47,7 +47,7 @@ void loop(){
   motor2.fullStep(); 
   motor2.CCW();
   motor2.aja();
-   motor1.quarterStep();
+  motor1.quarterStep();
   motor1.CW();
   motor1.aja();
   motor2.quarterStep(); 
