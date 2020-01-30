@@ -1,5 +1,5 @@
 #include "Askelmoottori.h"
-#define DIR 13
+#define DIR 13  // 
 #define MS1 12
 #define MS2 11
 #define RST 10

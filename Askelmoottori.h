@@ -2,15 +2,15 @@
 #define Askelmoottori_h
 #include <Arduino.h>
 
-#define stepsPerRevolution 200
+#define stepsPerRevolution 200 // monta askelma askelmoottoril pitä tehdä että se tekis täysin ympyrän
 #define CLOCKWISE HIGH
 #define COUNTERCLOCKWISE LOW
-#define waitHigh 1800
+#define waitHigh 1800 // voltit mitkä mene askelmoottorin
 #define waitLow 1800
 
 class askelmoottori{
   public:
-    askelmoottori(int DIR, int MS1, int MS2, int RST, int SLEEP, int EN, int STEP);
+    askelmoottori(int DIR, int MS1, int MS2, int RST, int SLEEP, int EN, int STEP);   
     void CW();
     void CCW();
     void aja();

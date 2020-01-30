@@ -2,7 +2,7 @@
 #include "Askelmoottori.h"
 
 
-askelmoottori::askelmoottori (int DIR, int MS1, int MS2, int RST, int SLEEP, int EN, int STEP){
+askelmoottori::askelmoottori (int DIR, int MS1, int MS2, int RST, int SLEEP, int EN, int STEP){   //pinnit mitä on yhdistetty arduinon
   _DIR = DIR;
   pinMode(_DIR, OUTPUT);
   _MS1 = MS1;
@@ -25,33 +25,33 @@ askelmoottori::askelmoottori (int DIR, int MS1, int MS2, int RST, int SLEEP, int
 }  
 
 void askelmoottori::CW(){
-  digitalWrite(_DIR, CLOCKWISE);
+  digitalWrite(_DIR, CLOCKWISE);  // moottori käy kellon suunta 
 }
 
 void askelmoottori::CCW(){
-  digitalWrite(_DIR, COUNTERCLOCKWISE);
+  digitalWrite(_DIR, COUNTERCLOCKWISE); // moottori käy vastapäin kello suunta
 }   
 
 void askelmoottori::aja(){
-  for (int i = 0; i < stepsPerRevolution; i++) {
+  for (int i = 0; i < stepsPerRevolution; i++) {  // moottori mene käyntii aja() funktiolla. 
     _oneStep();  
   }
 }
-void askelmoottori::_oneStep(){
+void askelmoottori::_oneStep(){ 
     digitalWrite(_STEP, LOW);
     delayMicroseconds(waitHigh);
     digitalWrite(_STEP, HIGH);
     delayMicroseconds(waitLow);
 }
-void askelmoottori::fullStep(){
+void askelmoottori::fullStep(){ // askelmoottori teke täysi ympyrä
   digitalWrite(_MS1, LOW);
   digitalWrite(_MS2, LOW);
 }
-void askelmoottori::halfStep(){
+void askelmoottori::halfStep(){ //askelmoottori teke puolikan ympyrän
   digitalWrite(_MS1, HIGH);
   digitalWrite(_MS2, LOW);
 }
-void askelmoottori::quarterStep(){
+void askelmoottori::quarterStep(){ // asekelmoottori vartti ympyrän , 1/4 ympyrän
   digitalWrite(_MS1, LOW);
   digitalWrite(_MS2, HIGH);
 }
